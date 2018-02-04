@@ -1,4 +1,18 @@
 extends layout
 
 block content
-  p Form!
+
+  form(method='POST' action='/')
+    div
+      label(for='name') Name:
+      input(type='text', placeholder='name' name='name')
+    div
+      label(for='email') Email:
+      input(type='email', placeholder='name@email.com' name='email')
+    div
+      label(for='password') Password:
+      input(type='password' name='password')
+    div
+      label(for='password2') Confirm Password:
+      input(type='password' name='password2')
+    button(type='submit') Sign up

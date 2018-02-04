@@ -3,6 +3,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
+/* maby remove */
+var bodyParser = require('body-parser');
+
 const form = require('./form');
 const admin = require('./admin');
 
@@ -12,6 +15,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+/* maby remove */ 
+app.use(bodyParser.urlencoded());
 
 app.use('/', form);
 app.use('/admin', admin);

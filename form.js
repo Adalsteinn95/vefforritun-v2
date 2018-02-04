@@ -7,6 +7,15 @@ function form(req, res) {
   res.render('form', { data });
 }
 
+function submit(req, res) {
+  console.log(req.body.email);
+
+
+  res.render('form', {});
+}
+
 router.get('/', form);
+
+router.post('/', submit);
 
 module.exports = router;
