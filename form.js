@@ -8,14 +8,21 @@ function form(req, res) {
 }
 
 function submit(req, res) {
-  console.log(req.body.email);
-
-
   res.render('form', {});
 }
 
-router.get('/', form);
+function login(req, res) {
+  res.render('login', {});
+}
 
+function postLogin(req, res) {
+}
+
+
+router.get('/', form);
 router.post('/', submit);
+
+router.get('/login', login);
+router.post('/login', postLogin);
 
 module.exports = router;

@@ -4,15 +4,18 @@ block content
 
   form(method='POST' action='/')
     div
-      label(for='name') Name:
-      input(type='text', placeholder='name' name='name')
+      label(for='name') Nafn
+      input(type='text',name='name')
     div
-      label(for='email') Email:
-      input(type='email', placeholder='name@email.com' name='email')
+      label(for='email') Netfang
+      input(type='email',name='email')
     div
-      label(for='password') Password:
-      input(type='password' name='password')
+      label(for='ssn') Kennitala
+      input(type='ssn' name='ssn')
     div
-      label(for='password2') Confirm Password:
-      input(type='password' name='password2')
-    button(type='submit') Sign up
+      label(for="number") Number:
+      input(type="number", name="number")
+    button(type='submit') Senda
+
+  include ./footer.pug
+  
