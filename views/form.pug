@@ -2,7 +2,12 @@ extends layout
 
 block content
 
-  form(method='POST' action='/')
+  if (errorMsg) 
+    ul
+      each key in errorMsg
+        li=key
+
+  form(method='POST' action='/register')
     div
       label(for='name') Nafn
       input(type='text',name='name')
@@ -13,8 +18,8 @@ block content
       label(for='ssn') Kennitala
       input(type='ssn' name='ssn')
     div
-      label(for="number") Number:
-      input(type="number", name="number")
+      label(for="amount") Amount:
+      input(type="number", name="amount")
     button(type='submit') Senda
 
   include ./footer.pug
