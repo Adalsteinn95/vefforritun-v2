@@ -26,9 +26,9 @@ exports.findByUsername = username => new Promise((resolve)=> {
   }
 
   return resolve(null);
-}
+});
 
-exports.findById = (id) => new Promise((resolve)=> {
+exports.findById = id => new Promise((resolve) => {
   // todo
   const found = records.find(u => u.id === id);
 
@@ -37,4 +37,4 @@ exports.findById = (id) => new Promise((resolve)=> {
   }
 
   return resolve(null);
-}
+});

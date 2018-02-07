@@ -13,6 +13,10 @@ const {
 const query = 'INSERT INTO users(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
 const router = express.Router();
 
+const users = require('./users');
+const passport = require('passport');
+const { Strategy } = require('passport-local');
+
 async function insert(values) {
   const client = new Client({
     connectionString,
@@ -70,13 +74,16 @@ function postLogin(req, res) {
     password = '',
   } = req.body;
 
+  console.info(users);
+
   res.redirect('/admin');
 }
 
 
 router.get('/', form);
 
-router.post('/register',
+router.post(
+  '/register',
   check('name').isLength({
     min: 1,
   }).withMessage('Nafn má ekki vera tómt'),
