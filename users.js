@@ -5,6 +5,7 @@ const records = [
     id: 1,
     username: 'admin',
     password: '$2a$11$pgj3.zySyFOvIQEpD7W6Aund1Tw.BFarXxgLJxLbrzIv/4Nteisii',
+    name: 'Stjórnandi',
   },
 ];
 
@@ -24,7 +25,7 @@ exports.findByUsername = username => new Promise((resolve) => {
     return resolve(found);
   }
 
-  return resolve(null);
+  return resolve(false);
 });
 
 

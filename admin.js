@@ -7,6 +7,8 @@ const router = express.Router();
 
 function admin(req, res) {
 
+  console.log(req.isAuthenticated());
+
   res.render('admin', {});
 }
 
