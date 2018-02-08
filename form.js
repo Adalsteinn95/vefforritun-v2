@@ -1,21 +1,18 @@
 const express = require('express');
 const {
-  Client
+  Client,
 } = require('pg');
 
 const connectionString = 'postgres://postgres:Alli8488430@localhost/vefforritun2';
+
+const query = 'INSERT INTO users(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
+const router = express.Router();
+
 const {
   check,
   validationResult,
 } = require('express-validator/check');
 
-
-const query = 'INSERT INTO users(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
-const router = express.Router();
-
-const users = require('./users');
-const passport = require('passport');
-const { Strategy } = require('passport-local');
 
 async function insert(values) {
   const client = new Client({
@@ -63,23 +60,6 @@ function submit(req, res) {
   return res.render('thanks', {});
 }
 
-function login(req, res) {
-  res.render('login', {});
-}
-
-function postLogin(req, res) {
-
-  const {
-    user = '',
-    password = '',
-  } = req.body;
-
-  console.info(users);
-
-  res.redirect('/admin');
-}
-
-
 router.get('/', form);
 
 router.post(
@@ -97,8 +77,6 @@ router.post(
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
   submit,
 );
-router.get('/login', login);
-router.post('/login', postLogin);
 
 
 module.exports = router;
