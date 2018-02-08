@@ -25,7 +25,7 @@ exports.findByUsername = username => new Promise((resolve) => {
     return resolve(found);
   }
 
-  return resolve(false);
+  return resolve(null);
 });
 
 
