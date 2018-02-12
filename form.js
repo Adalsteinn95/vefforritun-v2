@@ -3,7 +3,9 @@ const {
   Client,
 } = require('pg');
 
-const connectionString = 'postgres://postgres:Alli8488430@localhost/vefforritun2';
+const xss = require('xss');
+
+const connectionString = 'postgres://postgres:12345@localhost/vefforritun2';
 
 const query = 'INSERT INTO users(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
 const router = express.Router();
@@ -20,12 +22,7 @@ async function insert(values) {
   });
   client.connect();
 
-  try {
-    await client.query(query, values);
-
-  } catch (err) {
-    console.info(err);
-  }
+  await client.query(query, values);
 
   await client.end();
 }
@@ -37,7 +34,7 @@ function form(req, res) {
   });
 }
 
-function submit(req, res) {
+async function submit(req, res) {
   const {
     name = '',
     email = '',
@@ -54,16 +51,15 @@ function submit(req, res) {
     });
   }
 
-  insert([name, email, ssn, amount])
-    .catch(e => console.error(e));
+  await insert([xss(name), xss(email), xss(ssn), xss(amount)]);
 
-  return res.render('thanks', {});
+  return res.redirect('thanks');
 }
 
 router.get('/', form);
 
 router.post(
-  '/register',
+  '/',
   check('name').isLength({
     min: 1,
   }).withMessage('Nafn má ekki vera tómt'),
@@ -75,6 +71,7 @@ router.post(
     min: 1,
   }).withMessage('Kennitala má ekki vera tóm'),
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
+  check('amount').isInt([{ min: 1 }]).withMessage('Fjöldi verður að vera meira en 1'),
   submit,
 );
 

@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', form);
-app.use('/admin', admin);
+
 
 
 app.use(session({
@@ -42,6 +42,9 @@ function errorHandler(err, req, res, next) { // eslint-disable-line
   console.error(err);
   res.status(500).render('error', { err });
 }
+
+//app.use(errorHandler);
+//app.use(notFoundHandler);
 
 function strat(username, password, done) {
   users
@@ -75,9 +78,10 @@ passport.deserializeUser((id, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/admin', admin);
+
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
-    // getum núna notað user í viewum
     res.locals.user = req.user;
   }
 
@@ -89,8 +93,6 @@ function login(req, res) {
 }
 
 function postLogin(req, res) {
-  console.info(passport);
-  console.log(req);
   res.redirect('/admin');
 }
 
