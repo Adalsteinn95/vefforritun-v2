@@ -29,6 +29,7 @@ async function insert(values) {
 
 function form(req, res) {
   const data = {};
+
   res.render('form', {
     data,
   });
@@ -53,7 +54,7 @@ async function submit(req, res) {
 
   await insert([xss(name), xss(email), xss(ssn), xss(amount)]);
 
-  return res.redirect('thanks');
+  return res.render('thanks',{});
 }
 
 router.get('/', form);

@@ -1,5 +1,22 @@
 extends layout
 
 block content
-    h1="Welcome to Admin site"
-    p= data
+    h1='Welcome to Admin site'
+    table
+        tr
+            td='Id'
+            td='Dagsetning'
+            td='Nafn'
+            td='Netfang'
+            td='Kennitala'
+            td='Fjöldi'
+            each key in data
+                tr 
+                    td=key.id
+                    td=key.date
+                    td=key.name
+                    td=key.email
+                    td=key.ssn
+                    td=key.amount
+    form(method='GET' action='admin/download')
+        input(type='submit',name='name')

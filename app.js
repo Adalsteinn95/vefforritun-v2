@@ -24,10 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', form);
-
-
-
 app.use(session({
   secret: sessionSecret,
   resave: false,
@@ -78,8 +74,6 @@ passport.deserializeUser((id, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/admin', admin);
-
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
@@ -89,7 +83,11 @@ app.use((req, res, next) => {
 });
 
 function login(req, res) {
-  res.render('login', {});
+  if (req.isAuthenticated()) {
+    res.redirect('/admin');
+  } else {
+    res.render('login', {});
+  }
 }
 
 function postLogin(req, res) {
@@ -111,6 +109,8 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+app.use('/admin', admin);
+app.use('/', form);
 
 const hostname = '127.0.0.1';
 const port = 3000;
