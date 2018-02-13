@@ -1,5 +1,12 @@
 div(class="line")
-    
-    
-div(class="link")
-    a(href="/login")="Innskráning"
+
+if (!user)
+    div(class="link")
+        a(href="/login")="Innskráning"
+else 
+    div
+        p= `Innskráður notandi: ${user.name}`
+    div
+        a(href="/logout")="Útskráning"
+    div
+        a(href="/admin")="Stjórnandasíða"

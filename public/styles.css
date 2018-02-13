@@ -129,10 +129,9 @@ body {
   }
 
   ul {
-    margin-bottom: 50px;
+    margin: 50px 0;
   }
 
   .error {
     background-color:#fd4848;
-    transition: background-color 6s;
   }

@@ -5,22 +5,25 @@ block content
   if (errorMsg) 
     ul
       each key in errorMsg
-        li=key
+        div(class="error__msg")
+          li=key
 
-  form(method='post' action='/')
-    div
-      label(for='name') Nafn
-      input(type='text',name='name')
-    div
-      label(for='email') Netfang
-      input(type='email',name='email')
-    div
-      label(for='ssn') Kennitala
-      input(type='ssn' name='ssn')
-    div
-      label(for="amount") Amount:
-      input(type="number", name="amount")
-    button(type='submit') Senda
+  div(class="login__container")
+    form(method='post' action='/')
+      div(class="login__item")
+        label(for='name') Nafn
+        input(type='text',name='name', value= data.name)
+      div(class="login__item")
+        label(for='email') Netfang
+        input(type='email',name='email', value= data.email)
+      div(class="login__item")
+        label(for='ssn') Kennitala
+        input(type='ssn' name='ssn', value= data.ssn)
+      div(class="login__item")
+        label(for="amount") Amount:
+        input(type="number", name="amount", value= data.amount)
+      div(class="login__item")
+        input(type='submit')
 
   include ./footer.pug
   

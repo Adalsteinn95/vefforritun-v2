@@ -30,8 +30,11 @@ async function insert(values) {
 
 function form(req, res) {
   const data = {};
+
+  const user = req.user;
   res.render('form', {
     data,
+    user,
   });
 }
 
@@ -43,12 +46,15 @@ async function submit(req, res) {
     ssn = '',
   } = req.body;
 
+  const data = req.body;
+
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     const errorMsg = errors.array().map(i => i.msg);
     return res.render('form', {
       errorMsg,
+      data,
     });
   }
 
