@@ -51,6 +51,7 @@ router.get('/download', async (req, res) => {
     amount: 'Amount',
   });
 
+
   const newData = data.map((item) => {
     return `${item.date  };${ item.name  };${ item.email  };${ item.amount}\n`;
   });

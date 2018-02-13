@@ -10,6 +10,7 @@ const connectionString = 'postgres://postgres:12345@localhost/vefforritun2';
 const query = 'INSERT INTO users(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
 const router = express.Router();
 
+
 const {
   check,
   validationResult,
@@ -29,7 +30,6 @@ async function insert(values) {
 
 function form(req, res) {
   const data = {};
-
   res.render('form', {
     data,
   });
@@ -72,7 +72,9 @@ router.post(
     min: 1,
   }).withMessage('Kennitala má ekki vera tóm'),
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
-  check('amount').isInt([{ min: 1 }]).withMessage('Fjöldi verður að vera meira en 1'),
+  check('amount').isInt([{
+    min: 1
+  }]).withMessage('Fjöldi verður að vera meira en 1'),
   submit,
 );
 
