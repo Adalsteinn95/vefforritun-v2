@@ -60,6 +60,11 @@ body {
   font-size: 1em;
   width: 30%;
   border: 2px solid black;
+  transition: ease-in 1s;
+}
+
+.login__container > form > div > input:hover {
+  transform: rotate(360deg);
 }
 
 
@@ -74,7 +79,14 @@ body {
 
   td {
     border: 2px solid black;
+
   }
+
+
+  table {
+    border: 3px solid darkviolet;
+  }
+
 
 
 /**
@@ -134,4 +146,57 @@ body {
 
   .error {
     background-color:#fd4848;
+  }
+
+/**
+  *
+  *
+  * THANKS
+  *
+  *
+  *
+  **/
+
+  .thanks__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+
+/**
+  *
+  *
+  * ADMIN
+  *
+  *
+  **/
+
+  .table__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table__container table{
+    margin-top: 15px;
+  }
+
+  .table__container > form{
+    margin-top: 20px;
+    width: 10%;
+  }
+
+  .table__container > form > input{
+    border: 2px solid slateblue;
+    width: 100%;
+    font-size: 1.5em;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  .table__container > form > input:hover {
+    background: blueviolet;
+    cursor: help;
   }

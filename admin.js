@@ -43,7 +43,6 @@ router.get('/', ensureLoggedIn, async (req, res) => {
 
 router.get('/download', async (req, res) => {
   const data = await fetchData();
-
   data.unshift({
     date: 'Date',
     name: 'Name',
@@ -51,10 +50,7 @@ router.get('/download', async (req, res) => {
     amount: 'Amount',
   });
 
-
-  const newData = data.map((item) => {
-    return `${item.date  };${ item.name  };${ item.email  };${ item.amount}\n`;
-  });
+  const newData = data.map(item => `${item.date};${item.name};${item.email};${item.amount}\n`);
 
   const thisisIt = newData.join('');
 

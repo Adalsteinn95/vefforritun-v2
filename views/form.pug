@@ -7,7 +7,7 @@ block content
       each key in errorMsg
         div(class="error__msg")
           li=key
-
+  
   div(class="login__container")
     form(method='post' action='/')
       div(class="login__item")
@@ -20,7 +20,7 @@ block content
         label(for='ssn') Kennitala
         input(type='ssn' name='ssn', value= data.ssn)
       div(class="login__item")
-        label(for="amount") Amount:
+        label(for="amount") Fjöldi:
         input(type="number", name="amount", value= data.amount)
       div(class="login__item")
         input(type='submit')

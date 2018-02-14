@@ -31,7 +31,8 @@ async function insert(values) {
 function form(req, res) {
   const data = {};
 
-  const user = req.user;
+  const user = req.user; // eslint-disable-line
+
   res.render('form', {
     data,
     user,
@@ -60,7 +61,7 @@ async function submit(req, res) {
 
   await insert([xss(name), xss(email), xss(ssn), xss(amount)]);
 
-  return res.render('thanks',{});
+  return res.render('thanks', {});
 }
 
 router.get('/', form);
@@ -79,8 +80,14 @@ router.post(
   }).withMessage('Kennitala má ekki vera tóm'),
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
   check('amount').isInt([{
-    min: 1
+    min: 1,
   }]).withMessage('Fjöldi verður að vera meira en 1'),
+  check('amount').custom((value) => {
+    if (value < 0) {
+      throw new Error('Fjöldi verður að vera meira en 0');
+    }
+    return true;
+  }),
   submit,
 );
 

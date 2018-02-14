@@ -1,5 +1,10 @@
 extends layout
 
 block content
-    p='Takk fyrir skráningu'
-    a(href="/")='Aftur á forsíðu'
+    div(class="thanks__container")
+        div
+            p='Takk fyrir skráningu'
+        div
+            a(href="/")='Aftur á forsíðu'
+
+    include ./footer.pug
