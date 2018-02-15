@@ -5,7 +5,7 @@ const Papa = require('papaparse');
 
 const router = express.Router();
 
-const connectionString = 'postgres://postgres:12345@localhost/vefforritun2';
+const connectionString = process.env.DATABASE_URL || 'postgres://postgres:12345@localhost/vefforritun2';
 
 const writeCsv = util.promisify(fs.writeFile);
 
