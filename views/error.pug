@@ -1,5 +1,5 @@
-p Villa
+extends layout
 
-if err && err.message
-  p=err.message
-  pre #{err.stack}
+block content
+  div(class="error__container")
+    p Villa

@@ -42,33 +42,6 @@ function form(req, res) {
   });
 }
 
-async function submit(req, res) {
-  const {
-    name = '',
-    email = '',
-    amount = 0,
-    ssn = '',
-  } = req.body;
-
-  const data = req.body;
-
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    const errorMsg = errors.array().map(i => i.msg);
-    const errParam = errors.array().map(i => i.param);
-
-    return res.render('form', {
-      errorMsg,
-      data,
-      errParam,
-    });
-  }
-
-  await insert([xss(name), xss(email), xss(ssn), xss(amount)]);
-
-  return res.redirect('thanks');
-}
 
 function thankYou(req, res) {
   res.render('thanks', {});
@@ -107,7 +80,37 @@ router.post(
     }
     return true;
   }),
-  submit,
+  async (req, res) => {
+    const {
+      name = '',
+      email = '',
+      amount = 0,
+      ssn = '',
+    } = req.body;
+
+    const data = req.body;
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const errorMsg = errors.array().map(i => i.msg);
+      const errParam = errors.array().map(i => i.param);
+
+      return res.render('form', {
+        errorMsg,
+        data,
+        errParam,
+      });
+    }
+
+    await insert([xss(name), xss(email), xss(ssn), xss(amount)])
+      .then(() => {
+        return res.redirect('thanks');
+      })
+      .catch(() => {
+        return res.render('error');
+      });
+  },
 );
 
 

@@ -35,11 +35,15 @@ async function fetchData() {
 
 
 router.get('/', ensureLoggedIn, async (req, res) => {
-  const data = await fetchData();
-
-  res.render('admin', {
-    data,
-  });
+  await fetchData()
+    .then(async (data) => {
+      res.render('admin', {
+        data,
+      });
+    })
+    .catch(() => {
+      res.render('error');
+    });
 });
 
 router.get('/download', async (req, res) => {
@@ -47,14 +51,18 @@ router.get('/download', async (req, res) => {
     res.redirect('/login');
   }
 
-  const data = await fetchData();
-
-  const csv = await Papa.unparse(data, { delimiter: ';' });
-
-  await writeCsv('table.csv', csv);
-
-  const file = `${__dirname}/table.csv`;
-  res.download(file);
+  await fetchData()
+    .then(async (data) => {
+      const csv = await Papa.unparse(data, {
+        delimiter: ';',
+      });
+      await writeCsv('table.csv', csv);
+      const file = `${__dirname}/table.csv`;
+      res.download(file);
+    })
+    .catch(() => {
+      res.render('error');
+    });
 });
 
 module.exports = router;

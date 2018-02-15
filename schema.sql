@@ -4,6 +4,6 @@ CREATE TABLE Registers (
     email   varchar(64) NOT NULL,
     ssn     VARCHAR(64) NOT NULL,
     amount  int CHECK (amount > 0),
-    date DATE NOT NULL DEFAULT CURRENT_DATE
+    date timestamp with time zone not null default current_timestamp
 );
 
