@@ -1,6 +1,7 @@
 const express = require('express');
 const util = require('util');
 const fs = require('fs');
+const Papa = require('papaparse');
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ async function fetchData() {
   });
 
   await client.connect();
-  const result = await client.query('SELECT * FROM users');
+  const result = await client.query('SELECT * FROM Registers');
   return result.rows;
 }
 
@@ -42,22 +43,18 @@ router.get('/', ensureLoggedIn, async (req, res) => {
 });
 
 router.get('/download', async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect('/login');
+  }
+
   const data = await fetchData();
-  data.unshift({
-    date: 'Date',
-    name: 'Name',
-    email: 'Email',
-    amount: 'Amount',
-  });
 
-  const newData = data.map(item => `${item.date};${item.name};${item.email};${item.amount}\n`);
+  const csv = await Papa.unparse(data, { delimiter: ';' });
 
-  const thisisIt = newData.join('');
+  await writeCsv('table.csv', csv);
 
-  await writeCsv('table.csv', thisisIt);
-
-  const csv = './table.csv';
-  res.download(csv);
+  const file = `${__dirname}/table.csv`;
+  res.download(file);
 });
 
 module.exports = router;

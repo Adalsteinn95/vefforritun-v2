@@ -2,14 +2,14 @@ extends layout
 
 block content
     div(class="table__container")
-        table
+        table(border="1")
             tr
-                td='Id'
-                td='Dagsetning'
-                td='Nafn'
-                td='Netfang'
-                td='Kennitala'
-                td='Fjöldi'
+                th='Id'
+                th='Dagsetning'
+                th='Nafn'
+                th='Netfang'
+                th='Kennitala'
+                th='Fjöldi'
                 each key in data
                     tr 
                         td=key.id
@@ -21,6 +21,7 @@ block content
         form(method='GET' action='admin/download')
             input(type='submit', value="Sækja")
 
-    div(class="line")
-    div(class="link")
-        a(href="/")="Forsíða"
+    div(class="footer__container")
+        div(class="line")
+        div(class="link")
+            a(href="/")="Forsíða"

@@ -15,7 +15,6 @@ html {
 
 body {
   font-family: 'Lato', serif;
-  
   font-size: 16px;
   background-color: #eee;
   color: #333;
@@ -32,13 +31,17 @@ body {
   **/
 
 .login__container {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
   max-width: 1200px;
   min-width: 400px;
-  margin: 50px auto;
+  margin: 0 auto;
 
 }
 
 .login__item {
+  width: 100%;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -47,6 +50,7 @@ body {
 }
 
 .login__container > form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 2em;
@@ -60,13 +64,14 @@ body {
   font-size: 1em;
   width: 30%;
   border: 2px solid black;
-  transition: ease-in 1s;
 }
 
-.login__container > form > div > input:hover {
-  transform: rotate(360deg);
+.submit > input{
+  border-radius: 6px;
+  width: 20%;
+  border: 2px solid black;
+  font-size: 1em;
 }
-
 
 /**
   *
@@ -76,10 +81,9 @@ body {
   *
   *
   **/
-
-  td {
-    border: 2px solid black;
-
+  th {
+    background-color: darkorchid;
+    color: gold;
   }
 
 
@@ -123,6 +127,14 @@ body {
     text-decoration: none;
   }
 
+  .footer__item {
+    margin-left: 30px;
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 /**
   *
   *
@@ -141,7 +153,8 @@ body {
   }
 
   ul {
-    margin: 50px 0;
+    margin-top: 50px;
+    margin-bottom: -75px;
   }
 
   .error {
@@ -181,6 +194,7 @@ body {
 
   .table__container table{
     margin-top: 15px;
+    border-collapse: collapse;
   }
 
   .table__container > form{

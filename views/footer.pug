@@ -1,12 +1,12 @@
-div(class="line")
-
-if (!user)
-    div(class="link")
-        a(href="/login")="Innskráning"
-else 
-    div
-        p= `Innskráður notandi: ${user.name}`
-    div
-        a(href="/logout")="Útskráning"
-    div
-        a(href="/admin")="Stjórnandasíða"
+div(class="footer__container")
+    div(class="line")
+    if (!user)
+        div(class="link")
+            a(href="/login")="Innskráning"
+    else 
+        div(class="footer__item")
+            p= `Innskráður notandi: ${user.name}`
+        div(class="footer__item")
+            a(href="/logout")="Útskráning"
+        div(class="footer__item")
+            a(href="/admin")="Stjórnandasíða"

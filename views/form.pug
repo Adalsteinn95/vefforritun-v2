@@ -12,17 +12,29 @@ block content
     form(method='post' action='/')
       div(class="login__item")
         label(for='name') Nafn
-        input(type='text',name='name', value= data.name)
+        if (errParam.includes('name'))
+          input(class="error" type='text',name='name', value= data.name)
+        else
+          input(type='text',name='name', value= data.name)
       div(class="login__item")
         label(for='email') Netfang
-        input(type='email',name='email', value= data.email)
+        if (errParam.includes('email'))
+          input(class="error" type='email',name='email', value= data.email)
+        else
+          input(type='email',name='email', value= data.email)
       div(class="login__item")
         label(for='ssn') Kennitala
-        input(type='ssn' name='ssn', value= data.ssn)
+        if (errParam.includes('ssn'))
+          input(class="error" type='ssn' name='ssn', value= data.ssn)
+        else
+          input(type='ssn' name='ssn', value= data.ssn)
       div(class="login__item")
         label(for="amount") Fjöldi:
-        input(type="number", name="amount", value= data.amount)
-      div(class="login__item")
+        if (errParam.includes('amount'))
+          input(class="error" type="number", name="amount", value= data.amount)
+        else 
+          input(type="number", name="amount", value= data.amount)
+      div(class="login__item submit")
         input(type='submit')
 
   include ./footer.pug
