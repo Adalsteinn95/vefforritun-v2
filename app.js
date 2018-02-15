@@ -109,12 +109,10 @@ app.get('/logout', (req, res) => {
 app.use('/admin', admin);
 app.use('/', form);
 
-const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 
 app.use(errorHandler);
 app.use(notFoundHandler);
 
-app.listen(port, hostname, () => {
-  console.info(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
 });
