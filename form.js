@@ -5,7 +5,7 @@ const {
 
 const xss = require('xss');
 
-const connectionString = 'postgres://postgres:12345@localhost/vefforritun2';
+const connectionString = process.env.DATABASE_URL || 'postgres://postgres:12345@localhost/vefforritun2';
 
 const query = 'INSERT INTO Registers(name,email,ssn,amount) VALUES ($1,$2,$3,$4)';
 const router = express.Router();
