@@ -47,29 +47,23 @@ body {
   justify-content: center;
 }
 
-.login__container>form {
+.submit > input {
+  border-radius: 6px;
+  width: 20%;
+  border: 2px solid black;
+  font-size: 1em;
+}
+
+.login__container > form {
   width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 2em;
 }
 
-.login__container>form label {
+.login__container > form label {
   margin-right: 50px;
   width: 20%;
-}
-
-.login__container>form>div>input {
-  font-size: 1em;
-  width: 30%;
-  border: 2px solid black;
-}
-
-.submit>input {
-  border-radius: 6px;
-  width: 20%;
-  border: 2px solid black;
-  font-size: 1em;
 }
 
 /**
@@ -206,12 +200,12 @@ ul {
   border-collapse: collapse;
 }
 
-.table__container>form {
+.table__container > form {
   margin-top: 20px;
   width: 10%;
 }
 
-.table__container>form>input {
+.table__container > form > input {
   border: 2px solid slateblue;
   width: 100%;
   font-size: 1.5em;
@@ -219,7 +213,13 @@ ul {
   outline: none;
 }
 
-.table__container>form>input:hover {
+.login__container > form > div > input {
+  font-size: 1em;
+  width: 30%;
+  border: 2px solid black;
+}
+
+.table__container > form > input:hover {
   background: blueviolet;
   cursor: help;
 }
