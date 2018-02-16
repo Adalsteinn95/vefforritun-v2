@@ -71,11 +71,11 @@ router.post(
   }).withMessage('Kennitala má ekki vera tóm'),
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
   check('amount').isInt([{
-    min: 1,
+    min: 0,
   }]).withMessage('Fjöldi verður að vera meira en 1'),
   check('amount').custom((value) => {
     if (value < 0 || value === 0) {
-      throw new Error('Fjöldi má ekki vera minni en 0 eða 0');
+      throw new Error('Fjöldi má ekki vera minni en 0');
     }
     return true;
   }),
