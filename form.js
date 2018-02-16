@@ -74,8 +74,8 @@ router.post(
     min: 1,
   }]).withMessage('Fjöldi verður að vera meira en 1'),
   check('amount').custom((value) => {
-    if (value < 0) {
-      throw new Error('Fjöldi má ekki vera minni en 0');
+    if (value < 0 || value === 0) {
+      throw new Error('Fjöldi má ekki vera minni en 0 eða 0');
     }
     return true;
   }),
