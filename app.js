@@ -35,7 +35,6 @@ function notFoundHandler(req, res, next) { // eslint-disable-line
 }
 
 function errorHandler(err, req, res, next) { // eslint-disable-line
-  console.error(err);
   res.status(500).render('error', { title: 'Big Error' });
 }
 

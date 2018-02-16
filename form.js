@@ -75,7 +75,7 @@ router.post(
   }]).withMessage('Fjöldi verður að vera meira en 1'),
   check('amount').custom((value) => {
     if (value < 0) {
-      throw new Error('Fjöldi verður að vera meira en 0');
+      throw new Error('Fjöldi má ekki vera minni en 0');
     }
     return true;
   }),

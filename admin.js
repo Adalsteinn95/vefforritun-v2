@@ -34,7 +34,7 @@ async function fetchData() {
 }
 
 
-router.get('/', ensureLoggedIn, async (req, res) => {
+router.get('/', ensureLoggedIn, async (req, res, next) => {
   await fetchData()
     .then(async (data) => {
       res.render('admin', {
@@ -42,7 +42,7 @@ router.get('/', ensureLoggedIn, async (req, res) => {
       });
     })
     .catch(() => {
-      res.render('error');
+      next();
     });
 });
 
@@ -53,7 +53,15 @@ router.get('/download', async (req, res, next) => {
 
   await fetchData()
     .then(async (data) => {
-      const csv = await Papa.unparse(data, {
+      const filtered = data.map(file => ({
+        date: file.date,
+        name: file.name,
+        email: file.email,
+        amount: file.amount,
+        ssn: file.ssn,
+      }));
+
+      const csv = await Papa.unparse(filtered, {
         delimiter: ';',
       });
       await writeCsv('table.csv', csv);
