@@ -82,7 +82,7 @@ function login(req, res) {
   if (req.isAuthenticated()) {
     res.redirect('/admin');
   } else {
-    res.render('login', {});
+    res.render('login', { title: 'login' });
   }
 }
 

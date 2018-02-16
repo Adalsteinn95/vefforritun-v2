@@ -39,6 +39,7 @@ router.get('/', ensureLoggedIn, async (req, res, next) => {
     .then(async (data) => {
       res.render('admin', {
         data,
+        title: 'Admin',
       });
     })
     .catch(() => {
