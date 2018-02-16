@@ -46,7 +46,7 @@ router.get('/', ensureLoggedIn, async (req, res) => {
     });
 });
 
-router.get('/download', async (req, res) => {
+router.get('/download', async (req, res, next) => {
   if (!req.isAuthenticated()) {
     res.redirect('/login');
   }
@@ -61,7 +61,7 @@ router.get('/download', async (req, res) => {
       res.download(file);
     })
     .catch(() => {
-      res.render('error');
+      next('error');
     });
 });
 

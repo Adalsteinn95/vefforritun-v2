@@ -32,7 +32,6 @@ function form(req, res) {
   const data = {};
 
   const user = req.user; // eslint-disable-line
-
   const errParam = [];
 
   res.render('form', {
@@ -80,7 +79,7 @@ router.post(
     }
     return true;
   }),
-  async (req, res) => {
+  async (req, res, next) => {
     const {
       name = '',
       email = '',
@@ -96,7 +95,7 @@ router.post(
       const errorMsg = errors.array().map(i => i.msg);
       const errParam = errors.array().map(i => i.param);
 
-      return res.render('form', {
+      res.render('form', {
         errorMsg,
         data,
         errParam,
@@ -104,12 +103,8 @@ router.post(
     }
 
     await insert([xss(name), xss(email), xss(ssn), xss(amount)])
-      .then(() => {
-        return res.redirect('thanks');
-      })
-      .catch(() => {
-        return res.render('error');
-      });
+      .then(() => res.redirect('thanks'))
+      .catch(err => next(err));
   },
 );
 
