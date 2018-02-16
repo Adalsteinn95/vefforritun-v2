@@ -73,7 +73,7 @@ router.post(
   check('ssn').matches(/^[0-9]{6}-?[0-9]{4}$/).withMessage('Kennitala verður að vera á formi 000000-0000'),
   check('amount').isInt([{
     min: 1,
-  }]).withMessage('Fjöldi verður að vera meira en 1'),
+  }]).withMessage('Fjöldi verður að vera meira en 0'),
   check('amount').custom((value) => {
     if (value < 1 && value > -1) {
       throw new Error('Fjöldi má ekki vera 0');
